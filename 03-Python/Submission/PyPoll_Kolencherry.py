@@ -37,30 +37,24 @@ with open(csvpath) as csvfile:
             Li_t += 1
         elif row[2] == "O'Tooley":
             Tooley_t += 1
+
     #get the set of the index in the csv to get unique values of candidate names 
     array = np.array([candid])
-    candidates = np.unique(array)
+    candidates,counts = np.unique(array, return_counts=True)
+    zippy = zip(candidates, counts)
+    dic_zip = dict(zippy)
 
-    #percentages
-    Khan_p = round(float(Khan_t)/vote_count*100,2)
-    Correy_p = round(float(Correy_t)/vote_count*100,2)
-    Li_p = round(float(Li_t)/vote_count*100,2)
-    Tooley_p = round(float(Tooley_t)/vote_count*100,2)
-    
-    #winner of the popular vote
-    votes = np.array([Khan_p,Correy_p,Li_p,Tooley_p])
-    tally_dict = dict(zip(candidates, votes))
-    win_count = np.amax(votes)
-   
+    #percentages and winner
+    percents = list(map(lambda x:round(float(x)/vote_count*100,2),counts))
+    percents_dict = dict(zip(candidates, percents))
+    winner = max(dic_zip,key = dic_zip.get)
     
     #print print print 
-    print(vote_count) 
-    print(candidates)
-    print(Khan_p)
-    print(Correy_p)
-    print(Li_p)
-    print(Tooley_p)
-    print(win_count)
+    print(f'The total number of votes was {vote_count} .') 
+    print(f'Candidate vote totals were as follows: {dic_zip} .')
+    print(f'The candidate percents were as follows : {percents_dict} .')
+    print(f'The winner of the popular vote is  {winner} .')
+
     
     
 
