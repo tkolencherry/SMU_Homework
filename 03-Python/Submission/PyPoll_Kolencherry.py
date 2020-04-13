@@ -62,6 +62,12 @@ with open(csvpath) as csvfile:
     #find winner through max, only need to print the candidate
     winner = max(vote_summary,key = vote_summary.get)
     
+    #print to terminal 
+    print(f'The total number of votes was {vote_count}.') 
+    print(f'Candidate vote totals were as follows: {vote_summary}.')
+    print(f'The candidate percents were as follows : {percents_dict}.')
+    print(f'The winner of the popular vote is  {winner}.')
+    
     #create a text file
     results = open("PyPoll Results_Kolencherry.txt","w")
 

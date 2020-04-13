@@ -62,6 +62,12 @@ with open(csvpath) as csvfile:
 
     avg_ch = round(sum(change)/len(change),2)
     
+    #print to terminal
+    print(f'Over the past {month_count} months, the company has made ${net_income}.')
+    print(f'The largest increase in profits the company has made is ${max_num}, which occurred in {max_month}.')
+    print(f'The largest decrease in profits the company has made is ${min_num}, which occurred in {min_month}.')
+    print(f'The average change in net income was ${avg_ch}.')
+
     #create new text file - writeable
     results = open("Pybank Results_Kolencherry.txt","w")
 
