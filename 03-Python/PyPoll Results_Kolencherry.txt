@@ -1,0 +1,4 @@
+The total number of votes was 3521001.
+Candidate vote totals were as follows: {'Correy': 704200, 'Khan': 2218231, 'Li': 492940, "O'Tooley": 105630}.
+The candidate percents were as follows : {'Correy': 20.0, 'Khan': 63.0, 'Li': 14.0, "O'Tooley": 3.0}.
+The winner of the popular vote is  Khan.
