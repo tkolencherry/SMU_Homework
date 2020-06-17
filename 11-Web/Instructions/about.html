@@ -1,10 +1,10 @@
-<!-- COMPARISON PAGE -->
+<!-- ABOUT PAGE -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Overview</title>
+    <title>About</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/lux/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -16,7 +16,7 @@
 <body>
     <!-- Insert a header and a nav bar -->
     <!-- Split summary and graph preview boxes -->
-    <div class="container-fluid ">
+    <div class="container-fluid pg-container">
         <div>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">Weather</a>
@@ -29,7 +29,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="../Instructions/comparison.html">Overview</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -45,7 +45,7 @@
                             <a class="nav-link" href="../Instructions/data.html">Data</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../Instructions/about.html">About</a>
+                            <a class="nav-link active" href="../Instructions/about.html">About</a>
                         </li>
                     </ul>
 
@@ -56,58 +56,25 @@
             <!-- Define as 7 columns since summary is focus of page -->
             <div class="col-md-12 ">
                 <div class="card bg-secondary mb-3 cardformat" ;>
-                    <div class="card-header ">Open Weather API</div>
+                    <div class="card-header "> Open Weather API</div>
                     <div class="card-body ">
-                        <h4 class="card-title ">Available Visualizations</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="hovereffect">
-                                    <img src="../Instructions/Resources/assets/images/Fig1.png" alt="City Latitude vs Temperature" class="imgformat">
-                                    <div class="overlay">
-                                        <h2>Temperature</h2>
-                                        <a class="info" href="../Instructions/Plots/temp.html">Go to Analysis</a>
-                                    </div>
-                                </div>
+                        <h4 class="card-title ">Source Info</h4>
+                        <p>The Open WeatherMap API is published by OpenWeatherMap, one of the leading digital weather information platforms. This project specifically used the Current Weather Data API to pull city specific information. <br> </p>
+                        <p>First, a random set of longitudes and latitudes was generated using the Numpy library. For each pairing of latitiudes and longitudes, the nearest city was found using CityPy. The iteration this analysis was based off of included
+                            615 cities. The list of cities was then used to ping the Current Weather Data API from Open Weather to get different weather variables such as temperature, humidity, windspeed, cloudiness, and pressure. Since not all cities
+                            are included in the API, the sample of cities whittled down from 615 to 564. The cities were further filtered to account for only those with humidity less than 100%, resulting in 546 cities. These 546 cities are represented
+                            in each of the scatter plots included on this site. <br> <br> </p>
+                        <h5> <a href='https://openweathermap.org/guide'> CLICK TO LEARN MORE ABOUT THE OPEN WEATHER API</a></h5>
 
-                            </div>
-                            <div class="col-md-6">
-                                <div class="hovereffect">
-                                    <img src="../Instructions/Resources/assets/images/Fig2.png" alt="City Latitude vs Humidity" class="imgformat">
-                                    <div class="overlay">
-                                        <h2>Humidity</h2>
-                                        <a class="info" href="../Instructions/Plots/humidity.html">Go to Analysis</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="hovereffect">
-                                    <img src="../Instructions/Resources/assets/images/Fig3.png" alt="City Latitude vs Cloudiness" class="imgformat">
-                                    <div class="overlay">
-                                        <h2>Cloudiness</h2>
-                                        <a class="info" href="../Instructions/Plots/cloudiness.html">Go to Analysis</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="hovereffect">
-                                    <img src="../Instructions/Resources/assets/images/Fig4.png" alt="City Latitude vs Windspeed" class="imgformat">
-                                    <div class="overlay">
-                                        <h2>Windspeed</h2>
-                                        <a class="info" href="../Instructions/Plots/wind.html">Go to Analysis</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Add in a footer so people know what's up -->
-        <div class="alert alert-dismissible alert-warning footerformat">
-            <p class="mb-0">Terisha J. Kolencherry</p>
-        </div>
+    </div>
+    <!-- Add in a footer so people know what's up -->
+    <div class="alert alert-dismissible alert-warning footerformat">
+        <p class="mb-0">Terisha J. Kolencherry</p>
+    </div>
 </body>
 
 </html>

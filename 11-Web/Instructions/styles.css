@@ -4,12 +4,27 @@
 }
 
 .footerformat {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
+    height: 2.5rem;
     text-align: center;
-    background-color: white;
-    color: black;
+    background-color: #D6DBDF;
+    color: white;
+    border-color: #D6DBDF;
+}
+
+.pg-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    padding-bottom: 2.5rem
+}
+
+.cardhead {
+    background-color: #283747;
 }
 
 .imgformat {
@@ -71,9 +86,9 @@
     display: inline-block;
     text-decoration: none;
     padding: 7px 14px;
-    border: 1px solid #fff;
+    border: 1px solid lightsteelblue;
     margin: 50px 0 0 0;
-    background-color: transparent;
+    background-color: lightsteelblue;
 }
 
 .hovereffect a.info:hover {
@@ -89,7 +104,7 @@
     transition: all 0.4s ease-in;
     opacity: 0;
     filter: alpha(opacity=0);
-    color: #fff;
+    color: white;
     text-transform: uppercase;
 }
 

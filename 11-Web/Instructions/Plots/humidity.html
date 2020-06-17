@@ -26,17 +26,26 @@
 
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../comparison.html">Comparisons</a>
+                            <a class="nav-link" href="../comparison.html">Overview</a>
+                        </li>
+                        <li class="nav-item active dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="../comparison.html" role="button" aria-haspopup="true" aria-expanded="false">Graphs</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="../../Instructions/Plots/temp.html">Latitude vs Max Temperature</a>
+                                <a class="dropdown-item" href="../../Instructions/Plots/cloudiness.html">Latitude vs Cloudiness</a>
+                                <a class="dropdown-item" href="../Plots/wind.html">Latitude vs Windspeed</a>
+                                <a class="dropdown-item" href="../Plots/humidity.html">Latitude vs Humidity</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Data</a>
+                            <a class="nav-link" href="../data.html">Data</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="../about.html">About</a>
                         </li>
                     </ul>
 
@@ -44,20 +53,21 @@
             </nav>
         </div>
         <!-- Our columns function in rows. -->
-        <div class="row">
+        <div class="row content-wrap">
             <!-- Define as 7 columns since summary is focus of page -->
             <div class="col-md-7">
                 <!-- Insert Card -->
                 <div class="card text-white bg-primary mb-3 cardformat" ;>
-                    <div class="card-header ">Open Weather API</div>
-                    <div class="card-body ">
+                    <div class="card-header cardhead">Open Weather API</div>
+                    <div class="card-body cardhead">
                         <h4 class="card-title ">Latitude vs Humidity</h4>
                         <img src="../../Instructions/Resources/assets/images/Fig2.png" alt="City Latitude vs Humidity" class="imgformat">
                         <br>
                         <br>
                         <p class="card-text ">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            There is little to no correlation between humidity and latitude in either hemisphere (r = 0 for the Southern Hemisphere, r = 0.16 for the Northern Hemisphere), which is interesting. Relative humidity, which is a measure of the amount of water vapor in
+                            the air vs the amount of water vapor the air can hold, depends on temperature. Warmer air is able to hold more water so the relative humidity increases so we would expect to see a moderate to strong correlation between humidity
+                            and temperature - that isn't the case. </p>
                     </div>
                 </div>
             </div>
