@@ -2,77 +2,55 @@ var originalData = UFOdata;
 
 $(document).ready(function() {
 
-    // function init() {
-    cityOptions();
-    stateOptions();
-    countryOptions();
-    shapeOptions();
-    $('#ufo-table tbody').empty();
+    function init() {
+        cityOptions();
+        stateOptions();
+        countryOptions();
+        shapeOptions();
+        buildTable();
+    };
 
-    originalData.forEach(function(entry) {
-
-        let newRow = "<tr>";
-        Object.entries(entry).forEach(function([key, value]) {
-            // console.log([key, value])
-            newRow += `<td> ${value} </td>`
-        });
-        newRow += `</tr>`
-
-        $('#ufo-table tbody').append(newRow);
-
-    });
-
-    // };
-
-    // init();
-    // console.log(tableData);
+    init();
 
     $('.form').on('submit', function(entry) {
         entry.preventDefault();
-
-        $('#ufo-table tbody').empty();
-
         buildTable();
 
     });
 
-    $('.filter-btn').on('click', function(entry) {
+    $('#filter-btn').on('click', function(entry) {
         entry.preventDefault();
-
-        $('#ufo-table tbody').empty();
-
         buildTable();
 
     });
 
     $('#city_drop, #state_drop, #country_drop, #shape_drop').on('change', function(entry) {
         entry.preventDefault();
-
-        $('#ufo-table tbody').empty();
-
         buildTable();
 
     });
 });
 
 function buildTable() {
-
     var filter_data = filterData();
 
-
+    //  without this code we throw an error because a DataTable cannote be re-initialized
+    $('#ufo-table').DataTable().clear().destroy();
     $('#ufo-table tbody').empty();
 
     filter_data.forEach(function(entry) {
-
         let newRow = "<tr>";
         Object.entries(entry).forEach(function([key, value]) {
-            // console.log([key, value])
             newRow += `<td> ${value} </td>`
         });
         newRow += `</tr>`
 
         $('#ufo-table tbody').append(newRow);
 
+    });
+
+    $('#ufo-table').DataTable({
+        paging: true
     });
 
 };
@@ -107,18 +85,6 @@ function filterData() {
         filter_data = originalData.filter(x => x.shape === shapeValue);
     };
 
-
-    // console.log(cityValue !== "ALL");
-    // console.log(stateValue !== "ALL");
-    // console.log(countryValue !== "ALL");
-    // console.log(shapeValue !== "ALL");
-
-    console.log(Date.parse(inputValue));
-    // console.log(stateValue);
-    // console.log(countryValue);
-    // console.log(shapeValue);
-
-    // console.log(filter_data);
     return filter_data;
 };
 
@@ -149,8 +115,6 @@ function stateOptions() {
 function countryOptions() {
     var countries = [...new Set(originalData.map(x => x.country))];
     countries.sort();
-
-    console.log(countries);
 
     countries.forEach(function(country) {
         let country_dropdown = `<option>${country.toUpperCase()}</option>`
