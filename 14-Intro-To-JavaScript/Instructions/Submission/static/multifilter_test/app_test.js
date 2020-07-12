@@ -90,7 +90,7 @@ function filterData() {
 
 
     if (inputValue != "") {
-        filter_data = originalData.filter(x => Date.parse(x.datetime) === Date.parse(inputValue));
+        filter_data = originalData.filter(x => x.datetime === inputValue);
     };
 
     if (cityValue !== "all") {
@@ -107,13 +107,13 @@ function filterData() {
         filter_data = originalData.filter(x => x.shape === shapeValue);
     };
 
-
+    let test_filter = originalData.filter(x => x.datetime === inputValue && x.city === cityValue && x.state === stateValue && x.country === countryValue);
     // console.log(cityValue !== "ALL");
     // console.log(stateValue !== "ALL");
     // console.log(countryValue !== "ALL");
     // console.log(shapeValue !== "ALL");
 
-    console.log(Date.parse(inputValue));
+    console.log(test_filter);
     // console.log(stateValue);
     // console.log(countryValue);
     // console.log(shapeValue);
@@ -177,3 +177,6 @@ function titleCase(name) {
     split_string = split_string.join(" ");
     return split_string;
 };
+
+var countryValue = $('#country_drop').val().toLowerCase();
+console.log(originalData.filter(x => x.country === countryValue));
