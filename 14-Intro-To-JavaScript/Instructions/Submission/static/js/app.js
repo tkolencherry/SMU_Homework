@@ -18,11 +18,17 @@ $(document).ready(function() {
         // Filter and Build Table
         buildTable();
 
+        $('#datetime').val("");
+
     });
 
     // "FILTER TABLE" Button
-    $('#filter-btn').on('click', function(entry) {
+    $('#reset-btn').on('click', function(entry) {
         entry.preventDefault();
+        $('#city_drop').val("all");
+        $('#state_drop').val("all");
+        $('#country_drop').val("all");
+        $('#shape_drop').val("all");
         buildTable();
 
     });
@@ -31,6 +37,10 @@ $(document).ready(function() {
     $('#city_drop, #state_drop, #country_drop, #shape_drop').on('change', function(entry) {
         entry.preventDefault();
         buildTable();
+
+
+        // Need to change to lowercase in order to match format of data
+
 
     });
 });

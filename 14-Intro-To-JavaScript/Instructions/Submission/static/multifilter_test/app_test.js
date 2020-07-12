@@ -36,12 +36,12 @@ $(document).ready(function() {
 
     });
 
-    $('.filter-btn').on('click', function(entry) {
+    $('.reset-btn').on('click', function(entry) {
         entry.preventDefault();
 
         $('#ufo-table tbody').empty();
 
-        buildTable();
+        init();
 
     });
 
