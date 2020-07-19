@@ -3,6 +3,7 @@ $(document).ready(function() {
 
 
     populateDropdown();
+    buildGauge(940);
 
 
 
@@ -39,6 +40,7 @@ function populateDropdown() {
             let inputValue = $('#selDataset').val()
             grabDemographics(inputValue);
             buildBar(inputValue);
+            buildBubble(inputValue);
 
             // Define the demographic information variables - this will be for bonus later
             var age = metadata.map(x => x.age);
@@ -107,12 +109,89 @@ function buildBar(id) {
             }
 
             var traces = [trace1];
-
+            // ADD AXES LABELS
             var layout = {
                 title: "Top OTU Samples"
             }
 
             Plotly.newPlot("bar", traces, layout);
+
+        },
+        failure: function(error) {
+            console.log(error);
+        }
+    })
+}
+
+function buildBubble(id) {
+    $.ajax({
+        url: "../data/samples.json",
+        type: 'GET',
+        contentType: 'application/json;charset=UTF-8',
+        success: function(data) {
+
+            let sampleData = data.samples.filter(x => x.id == parseInt(id))[0];
+            console.log(sampleData);
+            let sampleList = sampleData["otu_ids"].map(function(e, i) {
+                return [e, sampleData["sample_values"][i], sampleData["otu_labels"][i]];
+            });
+
+            y = sampleList.map(x => x[1]) //[1] corresponds to the sample_value
+            x = sampleList.map(x => x[0]) //[0] corresponds to the OTU ID (the OTU is neccessary to append)
+            text = sampleList.map(x => x[2])
+
+            var trace1 = {
+                x: x,
+                y: y,
+                text: text,
+                mode: 'markers'
+            }
+
+            var traces = [trace1];
+
+            var layout = {
+                    title: "OTU Samples"
+                }
+                // ADD AXES LABELS
+            Plotly.newPlot("bubble", traces, layout);
+
+        },
+        failure: function(error) {
+            console.log(error);
+        }
+    })
+}
+
+function buildGauge(id) {
+    $.ajax({
+        url: "../data/samples.json",
+        type: 'GET',
+        contentType: 'application/json;charset=UTF-8',
+        success: function(data) {
+
+            let metadata = data.metadata.filter(x => x.id == parseInt(id))[0];
+            console.log(metadata);
+            // let sampleList = metadata["id"].map(function(e, i) {
+            //     return [e, metadata.wfreq[i]];
+            // });
+
+            x = metadata.id //[1] corresponds to the sample_value
+            y = metadata.wfreq //[0] corresponds to the OTU ID (the OTU is neccessary to append)
+                // text = sampleSort.map(x => x[2])
+
+            var trace1 = {
+                domain: { x: [0, 9], y: [0, 9] },
+                value: y,
+                title: { text: 'Wash Frequency' },
+                type: 'indicator',
+                mode: 'gauge+number'
+            }
+
+            var traces = [trace1];
+
+            var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+            // ADD AXES LABELS
+            Plotly.newPlot("gauge", traces);
 
         },
         failure: function(error) {
@@ -127,6 +206,7 @@ $('#selDataset').on('change', function() {
     let inputValue = $('#selDataset').val()
     grabDemographics(inputValue);
     buildBar(inputValue);
+    buildBubble(inputValue);
 })
 
 
