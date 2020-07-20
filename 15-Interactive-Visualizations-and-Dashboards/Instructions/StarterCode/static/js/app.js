@@ -1,55 +1,43 @@
 // Read in JSON File 
 $(document).ready(function() {
 
-
-    populateDropdown();
-    buildGauge(940);
-
-
-
+    buildPage();
 
 });
 
 
-function populateDropdown() {
+function buildPage() {
     $.ajax({
         url: "../data/samples.json",
         type: 'GET',
         contentType: 'application/json;charset=UTF-8',
         success: function(data) {
-            // alert("got the data!");
-            // console.log(data);
 
-            // COME BACK AND CHAIN THIS!!
-            var metadata = data.metadata;
-            // console.log(metadata);
 
-            var id = metadata.map(x => x.id)
 
-            // console.log(id);
+
+            var id = data.metadata.map(x => x.id)
+
+
 
             id.forEach(function(num) {
                 // for each id in the array, append it as a dropdown option to the menu
-                let id_dropdown = `<option>${num}</option>`
+                let id_dropdown = `<option class = "dropdown-item">${num}</option>`
                 $('#selDataset').append(id_dropdown);
-                // console.log(num);
+
 
             });
-
-            // MOVE TO INIT FUNCTION!!!!
             let inputValue = $('#selDataset').val()
             grabDemographics(inputValue);
             buildBar(inputValue);
             buildBubble(inputValue);
+            buildGauge(inputValue);
 
-            // Define the demographic information variables - this will be for bonus later
-            var age = metadata.map(x => x.age);
-            var ethnicity = metadata.map(x => x.ethnicity);
-            var sex = metadata.map(x => x.gender);
-            var location = metadata.map(x => x.location);
-            var bbType = metadata.map(x => x.bbType);
 
-            // console.log(ethnicity);
+
+
+
+
         },
         failure: function(error) {
             console.log(error);
@@ -66,16 +54,16 @@ function grabDemographics(id) {
         success: function(data) {
 
             let metadata = data.metadata.filter(x => x.id == parseInt(id))[0];
-            console.log(metadata);
+
             $('#demo_info').empty();
             Object.entries(metadata).forEach(function([key, value]) {
-                    if ((key !== 'id') && (key !== 'wfreq')) {
-                        let var_option = `<li>${key.toUpperCase()}: ${value}</li>`
-                        $('#demo_info').append(var_option);
-                    };
+                if ((key !== 'id') && (key !== 'wfreq')) {
+                    let var_option = `<li class="list-group-item d-flex justify-content-between align-items-center">${key.toUpperCase()}:  <span class="badge-pill">${value}</span> </li>`
+                    $('#demo_info').append(var_option);
+                };
 
-                })
-                // console.log(data);
+            })
+
         },
         failure: function(error) {
             console.log(error);
@@ -92,7 +80,7 @@ function buildBar(id) {
         success: function(data) {
 
             let sampleData = data.samples.filter(x => x.id == parseInt(id))[0];
-            console.log(sampleData);
+
             let sampleList = sampleData["otu_ids"].map(function(e, i) {
                 return [e, sampleData["sample_values"][i], sampleData["otu_labels"][i]];
             });
@@ -105,13 +93,24 @@ function buildBar(id) {
                 x: x,
                 y: y,
                 type: 'bar',
-                orientation: 'h'
+                orientation: 'h',
+                marker: { color: "#129BBC" }
+
             }
 
             var traces = [trace1];
-            // ADD AXES LABELS
+
             var layout = {
-                title: "Top OTU Samples"
+                title: `<b>Top OTU Samples for BB ID ${sampleData.id}</b>`,
+                yaxis: {
+                    title: { text: 'OTU Classification No' },
+                    automargin: true
+                },
+                xaxis: {
+                    title: { text: 'Number of Microbes' },
+                    automargin: true
+                }
+
             }
 
             Plotly.newPlot("bar", traces, layout);
@@ -131,29 +130,45 @@ function buildBubble(id) {
         success: function(data) {
 
             let sampleData = data.samples.filter(x => x.id == parseInt(id))[0];
-            console.log(sampleData);
-            let sampleList = sampleData["otu_ids"].map(function(e, i) {
-                return [e, sampleData["sample_values"][i], sampleData["otu_labels"][i]];
-            });
 
-            y = sampleList.map(x => x[1]) //[1] corresponds to the sample_value
-            x = sampleList.map(x => x[0]) //[0] corresponds to the OTU ID (the OTU is neccessary to append)
-            text = sampleList.map(x => x[2])
+
+            y = sampleData.sample_values
+            x = sampleData.otu_ids
+            text = sampleData.otu_labels
 
             var trace1 = {
                 x: x,
                 y: y,
                 text: text,
-                mode: 'markers'
+                mode: 'markers',
+                marker: {
+                    color: "#129BBC",
+                    size: y
+                        // color: [300, 100, 2, 3, 24, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 338, 0],
+                        // colorscale: 'Electric'
+
+                },
+
             }
 
             var traces = [trace1];
 
             var layout = {
-                    title: "OTU Samples"
+                title: `<b>OTU Sample Values for BB ID Number ${sampleData.id}</b>`,
+                xaxis: {
+                    title: { text: 'OTU Classification No' },
+                    automargin: true
+                },
+                yaxis: {
+                    title: { text: 'Number of Microbes' },
+                    automargin: true
                 }
-                // ADD AXES LABELS
-            Plotly.newPlot("bubble", traces, layout);
+
+            }
+
+            var config = { responsive: true };
+
+            Plotly.newPlot("bubble", traces, layout), config;
 
         },
         failure: function(error) {
@@ -170,28 +185,37 @@ function buildGauge(id) {
         success: function(data) {
 
             let metadata = data.metadata.filter(x => x.id == parseInt(id))[0];
-            console.log(metadata);
-            // let sampleList = metadata["id"].map(function(e, i) {
-            //     return [e, metadata.wfreq[i]];
-            // });
 
-            x = metadata.id //[1] corresponds to the sample_value
-            y = metadata.wfreq //[0] corresponds to the OTU ID (the OTU is neccessary to append)
-                // text = sampleSort.map(x => x[2])
+            x = metadata.id
+            y = metadata.wfreq
 
             var trace1 = {
                 domain: { x: [0, 9], y: [0, 9] },
                 value: y,
-                title: { text: 'Wash Frequency' },
+                title: {
+                    text: `<b> Belly Button #${x} Wash Frequency </b>`,
+                    font: { size: 22 }
+                },
                 type: 'indicator',
-                mode: 'gauge+number'
+                mode: 'gauge+number',
+                gauge: {
+                    axis: { range: [0, 9] },
+                    bar: { color: "#129BBC" }
+                },
+                number: {
+                    suffix: "x a Week",
+                    font: {
+                        size: 18
+                    }
+                },
+
             }
 
             var traces = [trace1];
+            var layout = { height: 600, width: 400, margin: { t: 0, b: 20 } };
+            var config = { responsive: true };
 
-            var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
-            // ADD AXES LABELS
-            Plotly.newPlot("gauge", traces);
+            Plotly.newPlot("gauge", traces, layout, config);
 
         },
         failure: function(error) {
@@ -200,13 +224,11 @@ function buildGauge(id) {
     })
 }
 
+
 // EVENT LISTENERS 
 // Dropdown Change 
 $('#selDataset').on('change', function() {
-    let inputValue = $('#selDataset').val()
-    grabDemographics(inputValue);
-    buildBar(inputValue);
-    buildBubble(inputValue);
+    buildPage();
 })
 
 

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bellybutton Biodiversity</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -21,25 +21,40 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <div class="well">
-                    <h5>Test Subject ID No.:</h5>
-                    <select id="selDataset" onchange="optionChanged(this.value)"></select>
+            <div class="col-md-3 ">
+                <div class="well card border-info">
+                    <div class='card-body'>
+                        <h4 class="card-title">Test Subject ID Number:</h4>
+                        <select id="selDataset" onchange="optionChanged(this.value)" class="form-control"></select>
+                    </div>
+
                 </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Demographic Info</h3>
+                <hr>
+                <div class="list-group">
+                    <div class="list-group-item list-group-item-action active">
+                        <h4>Demographic Info</h4>
 
                     </div>
                     <div id="sample-metadata" class="panel-body">
-                        <ul id="demo_info"></ul>
+                        <ul id="demo_info" class="list-group"></ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="card text-white">
+                    <div class="card-header bg-primary">
+                        <h4 class="card-title">Additional Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><a href="http://robdunnlab.com/projects/belly-button-biodiversity/"> Belly Button Biodiversity Project </a></p>
+                        <p class="card-text"><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0047712"> Published Paper </a></p>
+                        <p class="card-text"><a href="http://robdunnlab.com/projects/belly-button-biodiversity/most-common/"> Most Common OTUs' Profiles </a></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-5">
                 <div id="bar"></div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div id="gauge"></div>
             </div>
         </div>
@@ -49,6 +64,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
