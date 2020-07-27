@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>D3Times</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/d3Style.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <h1 style="text-align:center">State Level Healthcare vs Socioeconomic Indicators</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12  col-md-9">
+                <div id="scatter">
+                    <br>
+                    <!-- We append our chart here. -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class='jumbotron'>
+                <div class="col-xs-12  col-md-9">
+                    <div class="article">
+                        <h2>Correlations Discovered Between Health Risks and Age, Income</h2>
+                        <hr>
+                        <h4>
+                            Key Takeaway One:
+                            <small class="text-muted">Income Impacts Acces to Healthcare</small>
+                        </h4>
+                        <ul>
+                            <li>In general it looks like there's a positive correlation between the poverty rate in a given state and the percentage of the population that lacks access to healthcare within that state. </li>
+                            <li>Additionally, there appears to be a positive correlation between the poverty rate in a given state and the obesity rate within the state. This relationship makes sense when considering that many low SES areas are affiliated
+                                with food deserts, meaning that residents must travel further and longer to purchase groceries. The length of their travel time limits the viable food options they should buy to ones that can keep fresh throughout the duration
+                                of the trip, meaning that fresh vegetables and meats, if available, are often off the table. Additionally, fresh foods are often sold at higher prices, meaning that households with a lower budget for groceries are faced
+                                with a tradeoff between quality of food and quantity of food. </li>
+                        </ul>
+
+                        <h4>
+                            Key Takeaway Two:
+                            <small class="text-muted">Age Impacts Smoking (as of 2014)</small>
+                        </h4>
+                        <ul>
+                            <li>In general as the median age of a given state increases, so does the percentage of the population that smokes. </li>
+                            <li>It's highly likely that there are confounding variables at play with these two factors, but in general there seems to be a trend of older populations smoking more. </li>
+                            <li>Utah seems like an outlier, but it could simply be a cultural difference considering the large Church of the Latter Day Saints population located in the state. This trend makes sense, though, as the United States has seen several
+                                cultural shifts with regards to smoking. While smoking was often encouraged and acceptable up through the 90's, ad campaigns by various organizations and societal shifts had generally made smoking more taboo in 2014. This
+                                shift corresponds with older residents smoking more since they grew up with different attitudes towards the habit. It is important to note that this data is six years old, so cultural mores around smoking have likely shifted
+                                again with the advent of vaping. </li>
+                        </ul>
+                        <hr>
+                        <h4>Data Source</h4>
+                        <p>Data is compiled by the U.S. Census Bureau. This dataset was taken from the American Community Survey from 2014. The ACS is depicted as 1,3,and 5 Year Profiles - this dataset is a one year profile. For more information click the
+                            link below:</p>
+                        <a href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/2014/">ACS Data Profiles - 2014</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <div id="footer">
+        <p>The Coding Boot Camp&copy;2016</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script> -->
+    <!-- Read in D3 TIp in order to get the Tool Tips to Work -->
+    <script type="text/javascript" src="assets/js/d3-tip.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+</body>
+
+</html>
