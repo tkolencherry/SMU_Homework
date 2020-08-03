@@ -70,7 +70,7 @@ function makeMap() {
                 markers.addLayer(temp);
 
                 //heatmap points
-                heatArray.push([+earthquake.geometry.coordinates[0], +earthquake.geometry.coordinates[1]]);
+                heatArray.push([+lat, +lon]);
 
                 // circles with changing radius
                 circles.push(L.circle([+lat, +lon], {
