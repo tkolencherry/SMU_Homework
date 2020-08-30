@@ -8,7 +8,7 @@ $(document).ready(function() {
         buildPage();
     })
 
-});
+})
 
 
 
@@ -45,7 +45,7 @@ function grabDemographics(id) {
             console.log(error);
         }
     })
-};
+}
 
 // f(x) - Build a horizontal bar graph given an id
 function buildBar(id) {
@@ -103,7 +103,7 @@ function buildBar(id) {
             console.log(error);
         }
     })
-};
+}
 
 // f(x) - Build a scatter/bubble plot
 function buildBubble(id) {
@@ -161,7 +161,7 @@ function buildBubble(id) {
             console.log(error);
         }
     })
-};
+}
 
 // f(x) - Build a Gauge Chart (this chart isn't as impressive here)
 function buildGauge(id) {
@@ -209,7 +209,8 @@ function buildGauge(id) {
             console.log(error);
         }
     })
-};
+}
+
 
 // f(x): Build the Page 
 // (1/3) Note: Normally we'd be able to build out a function just for the dropdown and then call it plus the buildGraphs functions in a separate init function, but because of the AJAX get request 
@@ -248,4 +249,4 @@ function buildPage() {
             console.log(error);
         }
     })
-};
+}
